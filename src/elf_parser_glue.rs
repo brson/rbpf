@@ -107,7 +107,7 @@ pub trait ElfProgramHeader {
 }
 
 /// ELF section header.
-pub trait ElfSectionHeader {
+pub trait ElfSectionHeader : std::fmt::Debug {
     /// Returns the section name offset.
     fn sh_name(&self) -> Elf64Word;
 

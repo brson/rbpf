@@ -725,6 +725,8 @@ impl<C: ContextObject> Executable<C> {
                 _ => continue,
             }
 
+            //println!("{name:?} {section_header:#?}");
+
             if n_ro_sections == 0 {
                 first_ro_section = i;
             }
@@ -822,7 +824,6 @@ impl<C: ContextObject> Executable<C> {
         } else {
             // Read only and other non-ro sections are mixed. Zero the non-ro
             // sections and and copy the ro ones at their intended offsets.
-
             if config.optimize_rodata {
                 // The rodata region starts at MM_PROGRAM_START + offset,
                 // [MM_PROGRAM_START, MM_PROGRAM_START + offset) is not
@@ -838,7 +839,7 @@ impl<C: ContextObject> Executable<C> {
 
             let buf_len = highest_addr;
             if buf_len > elf_bytes.len() {
-                return Err(ElfError::ValueOutOfBounds);
+                //return Err(ElfError::ValueOutOfBounds);
             }
 
             let mut ro_section = vec![0; buf_len];
